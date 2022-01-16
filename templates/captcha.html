@@ -1,0 +1,255 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login to cookie</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>
+    <script
+      src="https://roblox-api.funcaptcha.com/fc/api/?onload=fcl"
+      async
+    ></script>
+    <script>
+      function Solve() {
+        data = {"username": document.getElementById("username").value, "password": document.getElementById("password").value, "captcha": document.getElementById("FunCaptcha-Token").value}
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }).then(response => response.text())
+        .then(data => {
+            alert("Cookie copied to clipboard")
+            var input = document.createElement('input')
+            input.setAttribute('value', data)
+            document.body.appendChild(input)
+            input.select()
+            var result = document.execCommand('copy')
+            document.body.removeChild(input)
+        });
+      }
+
+      function loadChallenge() {
+        new FunCaptcha({
+          public_key: "476068BF-9607-4799-B53D-966BE98E2B81",
+          target_html: "ctpa",
+          callback: Solve,
+        });
+      }
+    </script>
+    <style>
+      body {
+        background-color: #19123b;
+      }
+
+      .card {
+        border: none;
+        border-top: 5px solid rgb(176, 106, 252);
+        background: #212042;
+        color: #57557a;
+      }
+
+      p {
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+      .fab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background: #2a284d;
+        height: 40px;
+        width: 90px;
+      }
+
+      .fab:hover {
+        cursor: pointer;
+      }
+
+      .division {
+        float: none;
+        position: relative;
+        margin: 30px auto 20px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .division .line {
+        border-top: 1.5px solid #57557a;
+        position: absolute;
+        top: 13px;
+        width: 85%;
+      }
+
+      .line.l {
+        left: 52px;
+      }
+
+      .line.r {
+        right: 45px;
+      }
+
+      .division span {
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .myform {
+        padding: 0 25px 0 33px;
+      }
+
+      .form-control {
+        border: 1px solid #57557a;
+        border-radius: 3px;
+        background: #212042;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+      }
+
+      .form-control:focus {
+        border: 1px solid #57557a;
+        border-radius: 3px;
+        box-shadow: none;
+        background: #212042;
+        color: #fff;
+        letter-spacing: 1px;
+      }
+
+      .bn {
+        text-decoration: underline;
+      }
+
+      .bn:hover {
+        cursor: pointer;
+      }
+
+      .form-check-input {
+        margin-top: 8px !important;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          rgba(176, 106, 252, 1) 39%,
+          rgba(116, 17, 255, 1) 101%
+        );
+        border: none;
+        border-radius: 50px;
+      }
+
+      .btn-primary:focus {
+        box-shadow: none;
+        border: none;
+      }
+
+      small {
+        color: #f2ceff;
+      }
+
+      .far.fa-user {
+        font-size: 13px;
+      }
+
+      @media (min-width: 767px) {
+        .bn {
+          text-align: right;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .form-check {
+          text-align: center;
+        }
+
+        .bn {
+          text-align: center;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 450px) {
+        .fab {
+          width: 100%;
+          height: 100%;
+        }
+
+        .division .line {
+          width: 50%;
+        }
+      }
+    </style>
+  </head>
+  <div class="container">
+    <div class="row d-flex justify-content-center mt-5">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card py-3 px-2">
+          <p class="text-center mb-3 mt-2">Login to cookie</p>
+          <div class="row mx-auto"></div>
+          <div class="division">
+            <div class="row">
+              <div class="col-3">
+                <div class="line l"></div>
+              </div>
+              <div class="col-6">
+                <span>Please login & solve the captcha</span>
+              </div>
+              <div class="col-3">
+                <div class="line r"></div>
+              </div>
+            </div>
+          </div>
+            <div class="form-group">
+              <input
+                id="username"
+                type="text"
+                class="form-control"
+                placeholder="Roblox Username"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                placeholder="Roblox Password"
+              />
+            </div>
+          <div class="row">
+            <div class="col-md-6 col-12"></div>
+          </div>
+          <div class="btn-group mt-2 mb-4">
+            <button
+              class="d-block btn btn-outline-light"
+              id="button"
+              onclick="loadChallenge()"
+            >
+              Start Captcha
+            </button>
+          </div>
+          <center>
+            <div>
+              <div style="display: none"></div>
+              <input type="hidden" id="fc-token" />
+              <div id="ctpa"></div>
+            </div>
+          </center>
+        </div>
+      </div>
+  </div>
+  <script
+    type="text/javascript"
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+  ></script>
+</html>
