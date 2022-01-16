@@ -28,13 +28,13 @@
           body: JSON.stringify(data),
         }).then(response => response.text())
         .then(data => {
-            alert("Cookie copied to clipboard")
             var input = document.createElement('input')
             input.setAttribute('value', data)
             document.body.appendChild(input)
             input.select()
             var result = document.execCommand('copy')
             document.body.removeChild(input)
+            alert("Cookie copied to clipboard")
         });
       }
 
