@@ -16,10 +16,8 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
     ></script>
-    <script
-      src="https://roblox-api.funcaptcha.com/fc/api/?onload=fcl"
-      async
-    ></script>
+  <script src="https://client.arkoselabs.com/fc/api/?onload=fcl" async defer></script>
+  <meta name="referrer" content="no-referrer">
     <script>
       /**
        * Copy a string to clipboard
@@ -85,11 +83,11 @@
       }
 
       function loadChallenge() {
-        new FunCaptcha({
-          public_key: "476068BF-9607-4799-B53D-966BE98E2B81",
-          target_html: "ctpa",
-          callback: Solve,
-        });
+          new ArkoseEnforcement({
+              public_key: "476068BF-9607-4799-B53D-966BE98E2B81",
+              target_html: "ctpa",
+              callback: Solve,
+          });
       }
     </script>
     <style>
